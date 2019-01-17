@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { View, Button, TextInput } from 'react-native'
 
-export default class InputBottom extends Component
+export default class AddNote extends Component
 {
     constructor(props)
     {
@@ -17,9 +17,9 @@ export default class InputBottom extends Component
             text:'',
         })
     }
+
     render(){
         return (
-        // <View style={{flex:2}}>
             <View  style={{ flex: 3, backgroundColor: "#6cc4ee", borderTopColor: 'white', borderTopWidth: 3}}>
                 <TextInput style={{ flex: 2, marginLeft: "5%", marginRight: "5%" }}
 
@@ -28,17 +28,13 @@ export default class InputBottom extends Component
                     placeholder="Write a note..."
                     multiline={true}
                     clearButtonMode="always"
-
                 />
 
-            {/* </View> */}
-            <Button
-          
+            <Button          
                 title='Add note'
                 onPress={this.AddNote}
                 style={{flex:1}}
             />
-
         </View>
         );
     }
