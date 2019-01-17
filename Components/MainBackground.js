@@ -10,6 +10,6 @@ export default MainBackground = ()=>{
 const styles = StyleSheet.create({
     mainBackground:{
         flex: 6, 
-        backgroundColor:"#d2e9eb"
+        backgroundColor:"#9BD4F4"
     },
 });
