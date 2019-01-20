@@ -1,12 +1,14 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import Note from 'ToDoProject/Components/Note'
 
 export default TaskList = (props) => {
     return (
         <FlatList
             data={props.data}
-            renderItem={({ item }) => <Note text={item.description}></Note>}
+            extraData={props.extraData}
+            renderItem={({ item }) => <Note onDeleteNote={props.onDeleteNote} idNote={item.key} text={item.description}></Note>}
+            
         />
     );
 } 
