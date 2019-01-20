@@ -4,7 +4,7 @@ import { Header } from 'react-native-elements';
 
 export default MyHeader = (props) => {
     return (
-        <View style={{flex:1}}>
+        <View>
             <Header
                 centerComponent={{ text: 'TODO List', style: { color: '#fff', fontSize: 20 } }}
                 rightComponent={{ icon: 'person', color: '#fff' }}

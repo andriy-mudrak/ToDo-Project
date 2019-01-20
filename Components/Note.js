@@ -8,27 +8,32 @@ export default class Note extends Component {
         super(props)
         this.state = {
             check: false,
-            title_text: ''
+            color: "red"
         }
     }
     checkBoxTest() {
+        if(this.state.check)
+        {
+            this.setState({color:"red"})
+        } else
+        {
+            this.setState({color:"green"})
+        }
         this.setState(
             {
                 check: !this.state.check
             })
     }
 
-    somefunc() {
-
-    }
     deleteNote = () => {
         this.props.onDeleteNote(this.props.idNote)
     }
+
     render() {
         return (
-            <View style={{ flex: 1, flexDirection: "row", justifyContent: 'space-between' }}>
+            <View style={{ flex: 1, flexDirection: "row", justifyContent: 'space-between', marginBottom:15 }}>
 
-                {/* <Text>{this.props.idNote}</Text> */}
+             
                 <View style={{flex:6}}>
                     <CheckBox
                         title={this.props.text}
@@ -36,20 +41,16 @@ export default class Note extends Component {
                         onPress={() => this.checkBoxTest()}
                     />
                 </View>
-                {/* <View style={{flex:1}}> */}
-                {/* justifyContent:"center", */}
-                <View style={{flex: 1}}>
+               
+                <View style={{flex: 1, flexDirection:"column"}}>
                     <TouchableOpacity
                         
-                        style={{  backgroundColor:"red",  borderRadius:10}}
+                        style={{flex:1, justifyContent:"center", backgroundColor:this.state.color,  borderRadius:10}}
                         onPress={this.deleteNote}
                         >
                         <Text style={{color:"white,", textAlign:"center"}}>X</Text>
                     </TouchableOpacity>
                 </View>
-
-
-
 
             </View>
         );
