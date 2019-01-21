@@ -7,11 +7,10 @@ export default class MainPage extends Component {
   constructor(props) {
     super(props);
     this.id = 1;
+    
     this.state = {
-
       notes: [
-        { key: '1', description: 'task1', isDone: false },
-
+        { key: '1', description: 'task1' },
       ]
     };
   }
@@ -28,31 +27,34 @@ export default class MainPage extends Component {
     }
   }
   onDeleteNote = (id) => {
-    for (var i = 0; i < this.state.notes.length; ++i) {
-      if (this.state.notes[i].key === id) {
-        this.state.notes.splice(i, 1);
-        break;
-      }
-    }
-    this.setState({
-      notes: this.state.notes
-    })
+      let notes = this.state.notes.filter(n=>n.key != id);
+      this.setState({notes});
+
   }
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{flex:1}}>
-          <MyHeader text="ToDo List" />
-        </View>
-        <View style={{ flex: 6, backgroundColor: "#9BD4F4" }}>
-          <TaskList onDeleteNote={this.onDeleteNote} data={this.state.notes} extraData={this.state}></TaskList>
+      <View style={{ flex: 1, justifyContent:'flex-start', flexDirection: "column" }}>
+
+        <View>
+          <MyHeader text="TODO List" />
         </View>
 
-        <KeyboardAvoidingView style={{ flex: 2 }} behavior="padding">
-          <InputNote onNoteAdded={this.addNote}></InputNote>
-        </KeyboardAvoidingView>
+        <View style={{ flex:6, backgroundColor: "#9BD4F4" }}>
+          <TaskList
+            onDeleteNote={this.onDeleteNote}
+            data={this.state.notes}
+            extraData={this.state}
+          ></TaskList>
+        </View>
 
+        {/* <View style={{flex:2}}> */}
+          <KeyboardAvoidingView style={{flex:2}}behavior="padding"  >
+            {/* <View> */}
+            <InputNote onNoteAdded={this.addNote}></InputNote>
+        
+          </KeyboardAvoidingView>
+        
       </View>
     );
   }

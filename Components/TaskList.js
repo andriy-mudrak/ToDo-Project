@@ -7,13 +7,13 @@ export default TaskList = (props) => {
         <FlatList
             data={props.data}
             extraData={props.extraData}
-            renderItem={({ item }) => 
-            <Note 
-            onDeleteNote={props.onDeleteNote} 
-            idNote={item.key} 
-            text={item.description}>
-            </Note>}
-            
+            renderItem={({ item }) =>
+                <Note
+                    onDeleteNote={props.onDeleteNote}
+                    idNote={item.key}
+                    text={item.description}>
+                </Note>}
+
         />
     );
 } 

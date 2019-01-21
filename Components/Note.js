@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TextInput, Button, Text, TouchableOpacity} from 'react-native'
-import { Header, CheckBox,  } from 'react-native-elements';
+import { View, StyleSheet, TextInput, Button, Text, TouchableOpacity } from 'react-native'
+import { Header, CheckBox, } from 'react-native-elements';
 import InputNote from 'ToDoProject/Components/InputNote'
 
 export default class Note extends Component {
@@ -12,15 +12,11 @@ export default class Note extends Component {
         }
     }
     checkBoxTest() {
-        if(this.state.check)
-        {
-            this.setState({color:"red"})
-        } else
-        {
-            this.setState({color:"green"})
-        }
+
+        let color = this.state.check ? 'red' : 'green';
+
         this.setState(
-            {
+            {   color,
                 check: !this.state.check
             })
     }
@@ -31,24 +27,24 @@ export default class Note extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, flexDirection: "row", justifyContent: 'space-between', marginBottom:15 }}>
+            <View style={{ flex: 1, flexDirection: "row", justifyContent: 'space-between', marginBottom: 15 }}>
 
-             
-                <View style={{flex:6}}>
+
+                <View style={{ flex: 6 }}>
                     <CheckBox
                         title={this.props.text}
                         checked={this.state.check}
                         onPress={() => this.checkBoxTest()}
                     />
                 </View>
-               
-                <View style={{flex: 1, flexDirection:"column"}}>
+
+                <View style={{ flex: 1, flexDirection: "column" }}>
                     <TouchableOpacity
-                        
-                        style={{flex:1, justifyContent:"center", backgroundColor:this.state.color,  borderRadius:10}}
+
+                        style={{ flex: 1, justifyContent: "center", backgroundColor: this.state.color, borderRadius: 10 }}
                         onPress={this.deleteNote}
-                        >
-                        <Text style={{color:"white,", textAlign:"center"}}>X</Text>
+                    >
+                        <Text style={{ color: "white", textAlign: "center" }}>X</Text>
                     </TouchableOpacity>
                 </View>
 

@@ -6,13 +6,16 @@ export default class InputNote extends Component
     constructor(props)
     {
         super(props)
+        
         this.state={
             text:'',
         }
     }
     
     saveNote =() =>
-    { this.props.onNoteAdded(this.state.text)
+    { 
+        this.props.onNoteAdded(this.state.text)
+        
         this.setState({
             text:'',
         })
