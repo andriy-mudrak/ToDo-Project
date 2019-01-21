@@ -36,6 +36,7 @@ export default class InputNote extends Component
                 title='Add note'
                 onPress={this.saveNote}
                 style={{flex:1}}
+                disabled={this.state.text.trim() == ''}
             />
         </View>
         );
