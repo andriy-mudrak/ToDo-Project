@@ -1,23 +1,25 @@
 import React, {Component} from 'react'
 import { View, Button, TextInput } from 'react-native'
+import { addTask, setDoneTask } from 'ToDoProject/Actions/ActionCreator'
+import {connect} from 'react-redux';
 
-export default class InputNote extends Component
+
+class InputNote extends Component
 {
     constructor(props)
-    {
-        super(props)
-        
+    {        
+        super(props)   
         this.state={
-            text:'',
+            inputText:'',
         }
     }
     
     saveNote =() =>
     { 
-        this.props.onNoteAdded(this.state.text)
+        this.props.addTask(this.state.inputText)
         
         this.setState({
-            text:'',
+            inputText:'',
         })
     }
 
@@ -26,8 +28,8 @@ export default class InputNote extends Component
             <View  style={{ flex: 2, backgroundColor: "#6cc4ee", borderTopColor: 'white', borderTopWidth: 3}}>
                 <TextInput style={{ flex: 2, marginLeft: "5%", marginRight: "5%" }}
 
-                    onChangeText={(text) => this.setState({ text })}
-                    value={this.state.text}
+                    onChangeText={(inputText) => this.setState({ inputText })}
+                    value={this.state.inputText}
                     placeholder="Write a note..."
                     multiline={true}
                 />
@@ -36,9 +38,22 @@ export default class InputNote extends Component
                 title='Add note'
                 onPress={this.saveNote}
                 style={{flex:1}}
-                disabled={this.state.text.trim() == ''}
+                disabled={this.state.inputText.trim() == ''}
+
             />
         </View>
         );
     }
 }
+
+const mapDispatchToProps={
+    addTask
+}
+
+const mapStateToProps = (state) =>{
+    return {
+        
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(InputNote);

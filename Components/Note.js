@@ -1,30 +1,13 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TextInput, Button, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TextInput, Button, Text, TouchableOpacity, Alert } from 'react-native'
 import { Header, CheckBox, } from 'react-native-elements';
-import InputNote from 'ToDoProject/Components/InputNote'
+import InputNote from 'ToDoProject/Components/InputNote';
+import { setDoneTask, onDeleteTask } from 'ToDoProject/Actions/ActionCreator';
+import {connect} from 'react-redux';
 
-export default class Note extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            check: false,
-            color: "red"
-        }
-    }
-    checkBoxTest() {
 
-        let color = this.state.check ? 'red' : 'green';
-
-        this.setState(
-            {   color,
-                check: !this.state.check
-            })
-    }
-
-    deleteNote = () => {
-        this.props.onDeleteNote(this.props.idNote)
-    }
-
+class Note extends Component {
+ 
     render() {
         return (
             <View style={{ flex: 1, flexDirection: "row", justifyContent: 'space-between', marginBottom: 15 }}>
@@ -33,16 +16,19 @@ export default class Note extends Component {
                 <View style={{ flex: 6 }}>
                     <CheckBox
                         title={this.props.text}
-                        checked={this.state.check}
-                        onPress={() => this.checkBoxTest()}
+                        checked={this.props.isDone}
+                        onPress={() => this.props.setDoneTask(this.props.index)}
                     />
+                    {/* Alert.alert('You need to...') */}
+                    {/* <Text>asdasd{this.props.text}</Text> */}
                 </View>
 
                 <View style={{ flex: 1, flexDirection: "column" }}>
                     <TouchableOpacity
 
-                        style={{ flex: 1, justifyContent: "center", backgroundColor: this.state.color, borderRadius: 10 }}
-                        onPress={this.deleteNote}
+                        style={{ flex: 1, justifyContent: "center", backgroundColor: this.props.isDone ? 'green' : 'red', borderRadius: 10 }}
+                        onPress={() => this.props.onDeleteTask(this.props.index)}
+                        
                     >
                         <Text style={{ color: "white", textAlign: "center" }}>X</Text>
                     </TouchableOpacity>
@@ -59,3 +45,16 @@ const styles = StyleSheet.create({
     },
 
 });
+
+const mapDispatchToProps={
+    setDoneTask,
+    onDeleteTask
+}
+
+const mapStateToProps = (state) =>{
+    return {
+        
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Note);
